@@ -1,85 +1,117 @@
-// Simrann Dabrai 22070126111 B2
-import java.util.Scanner;
-class Main{
-        public static void main(String args[]){
-			
-			Scanner scan = new Scanner(System.in);
-			UserInput input = new UserInput();
-		    Calculator calculator = new Calculator();
-			double[] numbers = new double[2];
+//Simrann Dabrai 22070126111 AIMLB2
 
-            while (true) {
-            System.out.println("Menu:");
-            System.out.println("1. Addition");
-            System.out.println("2. Subtraction");
-            System.out.println("3. Multiplication");
-            System.out.println("4. Division");
-            System.out.println("5. Sum of array");
-			System.out.println("6. Variance of array");
-			System.out.println("7. Standard Deviation of array");
-			System.out.println("8. Exit");
-            System.out.print("Enter your choice (1-8): ");
+import java.util.*;
 
-            // Prompt the user to enter an integer
-            System.out.print("Enter Choice: ");
-            // Check if the next input is an integer
-            int choice = scan.nextInt();
-			
-			switch(choice){
-				case 1:
-				    
-				    numbers = input.inputNumbers();
-				    System.out.println("The addition of"+numbers[0]+"and"+numbers[1]+"is"+calculator.addition(numbers[0],numbers[1]));
-					
-				case 2:
-				    
-				    numbers = input.inputNumbers();
-				    System.out.println("The subtraction of"+numbers[0]+"and"+numbers[1]+"is"+calculator.subtraction(numbers[0],numbers[1]));
-				
-				case 3:
-				    
-				    numbers = input.inputNumbers();
-				    System.out.println("The multiplication of"+numbers[0]+"and"+numbers[1]+"is"+calculator.multiplication(numbers[0],numbers[1]));
-				
-				case 4:
-				    
-				    numbers = input.inputNumbers();
-				    System.out.println("The division of"+numbers[0]+"and"+numbers[1]+"is"+calculator.division(numbers[0],numbers[1]));
-				
-				case 5:
-				    System.out.print("Enter the size of array: ");
-					int size = scan.nextInt();
-					// Create an array of the specified size
-					double[] array = new double[size];
-					// Call the function to get user input for the array elements
-					array = input.getUserInput(array);
-					
-					System.out.println("The sum of array is"+calculator.sumOfArray(array));
-                
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("Select a shape:");
+            System.out.println("1. Circle");
+            System.out.println("2. Rectangle");
+            System.out.println("3. Square");
+            System.out.println("4. Sphere");
+            System.out.println("5. Cylinder");
+            System.out.println("6. Pyramid");
+            System.out.println("7. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    calculateCircle();
+                    break;
+                case 2:
+                    calculateRectangle();
+                    break;
+                case 3:
+                    calculateSquare();
+                    break;
+                case 4:
+                    calculateSphere();
+                    break;
+                case 5:
+                    calculateCylinder();
+                    break;
                 case 6:
-				    System.out.print("Enter the size of array: ");
-					int size1 = scan.nextInt();
-					// Create an array of the specified size
-					double[] array1 = new double[size1];
-					// Call the function to get user input for the array elements
-					array1 = input.getUserInput(array1);
-					
-					System.out.println("The sum of array is"+calculator.variance(array1));	
-
+                    calculatePyramid();
+                    break;
                 case 7:
-				    System.out.print("Enter the size of array: ");
-					int size2 = scan.nextInt();
-					// Create an array of the specified size
-					double[] array2 = new double[size2];
-					// Call the function to get user input for the array elements
-					array2 = input.getUserInput(array2);
-					
-					System.out.println("The sum of array is"+calculator.standardDeviation(array2));					
-				    
-				case 8:
-				    System.out.println("Exiting calculator program. Goodbye!");
-                    break;			
-			}		        
-		}
-		}
+                    System.out.println("Exiting...");
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid choice! Please enter a valid option.");
+            }
+        }
+    }
+
+    public static void calculateCircle() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the radius of the circle: ");
+        double radius = scanner.nextDouble();
+        Circle circle = new Circle(radius);
+        circle.showShape("Circle");
+        System.out.println("Area: " + circle.calculateArea());
+        System.out.println("Perimeter: " + circle.calculatePerimeter());
+    }
+
+    public static void calculateRectangle() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the length of the rectangle: ");
+        double length = scanner.nextDouble();
+        System.out.print("Enter the width of the rectangle: ");
+        double width = scanner.nextDouble();
+        Rectangle rectangle = new Rectangle(length, width);
+        rectangle.showShape("Rectangle");
+        System.out.println("Area: " + rectangle.calculateArea());
+        System.out.println("Perimeter: " + rectangle.calculatePerimeter());
+    }
+
+    public static void calculateSquare() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the side length of the square: ");
+        double side = scanner.nextDouble();
+        Square square = new Square(side);
+        square.showShape("Square");
+        System.out.println("Area: " + square.calculateArea());
+        System.out.println("Perimeter: " + square.calculatePerimeter());
+    }
+
+    public static void calculateSphere() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the radius of the sphere: ");
+        double radius = scanner.nextDouble();
+        Sphere sphere = new Sphere(radius);
+        sphere.showShape("Sphere");
+        System.out.println("Surface Area: " + sphere.calculateArea());
+        System.out.println("Volume: " + sphere.calculateVolume());
+    }
+
+    public static void calculateCylinder() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the radius of the cylinder: ");
+        double radius = scanner.nextDouble();
+        System.out.print("Enter the height of the cylinder: ");
+        double height = scanner.nextDouble();
+        Cylinder cylinder = new Cylinder(radius, height);
+        cylinder.showShape("Cylinder");
+        System.out.println("Surface Area: " + cylinder.calculateArea());
+        System.out.println("Volume: " + cylinder.calculateVolume());
+    }
+
+    public static void calculatePyramid() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the length of the base of the pyramid: ");
+        double length = scanner.nextDouble();
+        System.out.print("Enter the width of the base of the pyramid: ");
+        double width = scanner.nextDouble();
+        System.out.print("Enter the height of the pyramid: ");
+        double height = scanner.nextDouble();
+        Pyramid pyramid = new Pyramid(length, width, height);
+        pyramid.showShape("Pyramid");
+        System.out.println("Surface Area: " + pyramid.calculateArea());
+        System.out.println("Volume: " + pyramid.calculateVolume());
+    }
 }
+
